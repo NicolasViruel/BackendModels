@@ -1,10 +1,13 @@
 const app = require('./app')
+//requerimos dotenv
+require("dotenv").config()
 
-//controladores
-const { test } = require('./controllers/testController')
+//routers
+const testRoutes = require("./router/test")
+
 
 //rutas
-app.get('/test', test);
+app.use('/test', testRoutes);
 
 
 
