@@ -4,6 +4,8 @@ const testController = require("../controllers/testController")
 const router = express.Router()
 //traer los contactos
 router.get('/', testController.test)
+//traer solo una modelo
+router.get('/:id', testController.testId)
 //Jquery Filter
 router.get('/filter', testController.Filter)
 //crear un contacto

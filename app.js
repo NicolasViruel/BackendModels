@@ -3,6 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser')
 //Inicializamos  Express
 const app = express();
+//importamos Cors
+const cors = require("cors")
 
 
 
@@ -10,6 +12,8 @@ const app = express();
 // parsear Body
 app.use(bodyParser.urlencoded ({ extended: true}));
 app.use(bodyParser.json())
+//inicializamos Cors
+app.use(cors())
 
 
 module.exports = app;

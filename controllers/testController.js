@@ -18,7 +18,26 @@ const test = async (req, res) => {
     }
 };
 
-//jquery asistencia
+const testId = async (req, res) => {
+    try {
+          const doc = await db.collection('test').doc(req.params.id).get();
+          if (!doc.exists) {
+            console.log('No se encontró ningún documento con el ID proporcionado');
+            res.status(404).send('No se encontró ningún documento con el ID proporcionado');
+            return;
+        }
+          const person = doc.data();
+          //se agrega imagen hardcodeada (editar cuando venga la foto)
+         person.imagen = "https://tn.com.ar/resizer/rqgHvVNI6wvaFIya22E90ZRhdWI=/1440x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/NZAR7H4CONCD5DUTFGO3WQCDWA.jpg"
+          console.log(person);
+          res.send(person);
+    } catch (error) {
+          console.error(error);
+          res.status(500).send('Error al buscar el documento');
+    }
+};
+
+
 const Filter = async (req, res) => {
     const filterRef = db.collection('test');
     try{
@@ -38,17 +57,22 @@ const Filter = async (req, res) => {
 
 const newContact = async (req, res) => {
     console.log(req.body);
-     const {id , born , last , first} = req.body
+     const {nombreModelo , edad , colorOjos, colorPelo, altura, calzado, pecho, cintura, cadera} = req.body
     try {
         await db.collection('test').add({
-            id,
-            born,
-            last,
-            first
+           nombreModelo,
+           edad,
+           colorOjos,
+           colorPelo,
+           altura,
+           calzado,
+           pecho,
+           cintura,
+           cadera
          })
         res.send('Nuevo contacto Creado')
     } catch (error) {
-        res.status(400).send({msg:"El contacto ya existe"})
+        res.status(400).send({msg:"La modelo ya existe"})
         console.log(error);
     } 
 }
@@ -98,5 +122,6 @@ module.exports ={
     editContact,
     deleteContact,
     updateContact,
-    Filter
+    Filter,
+    testId
 }
