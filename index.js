@@ -1,14 +1,16 @@
 const app = require('./app')
+//requerimos dotenv
+require("dotenv").config()
 
-//controladores
-const { test } = require('./controllers/testController')
+//routers
+const testRoutes = require("./router/test")
+
 
 //rutas
-app.get('/test', test);
+app.use('/test', testRoutes);
 
 
-
-const PORT = process.env.PORT || 5051
+const PORT = process.env.PORT || 3004
 app.get('/', (req, res) => {
 res.send('Iniciando Conexion')
 })
