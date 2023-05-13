@@ -20,22 +20,8 @@
 
 #### npm start
 
-## Estructura del sitio
-
-#### - Pagina Principal
-#### - Modal Login
-####  - Modal Registro
-#### - Carrito de compras
-#### - Pagina de tabla Usuarios (Admin)
-#### - Pagina de tabla Productos (Admin)
-#### - Pagina de Nosotros
-#### - Pagina de Detalles
-#### - Pagina Error 404
-#### - Pagina Recuperar Contraseña
-#### - Pagina Productos Favoritos 
-
 ## App subida a netlify
-
+### En proceso
 <!-- - https://fancy-crostata-21596e.netlify.app/ -->
 
 ## Herramientas Utilizadas🛠️
