@@ -8,7 +8,6 @@
 #### Se necesitan tener instalado o configurado previamente para utilizar tu proyecto
 
 #### -NodeJS 
-#### -Npm install
 #### -Direccion para Conectar con FireBase (serviceAccount)
 
 
