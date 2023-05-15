@@ -8,12 +8,24 @@
 #### Se necesitan tener instalado o configurado previamente para utilizar tu proyecto
 
 #### -NodeJS 
-#### -Direccion para Conectar con FireBase (serviceAccount)
+#### -Direccion para Conectar con FireBase (serviceAccount) - Crear una carpeta admin.js:
+  var admin = require("firebase-admin");
+  var serviceAccount (direccion donde esta localizado el proyecto)
+  
+  admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://laUrldelProyectoEnFireBase"
+  })
+  
+  const db = admin.firestore();
+  
+  module.exports = { admin, db };
+  
 
 
 ## Instalación ⚙️ 
 
-#### Puedes instalar el proyecto desde npm:
+#### Puedes instalar el proyecto desde npm (en este proyecto se trabajo con VITE):
 
 #### npm install
 
