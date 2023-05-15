@@ -20,6 +20,7 @@
   const db = admin.firestore();
   
   module.exports = { admin, db };
+  ### - Luego crear una carpeta "Json_credenciales" y adentro colocar las credenciales de tu propio proyecto
   
 
 
