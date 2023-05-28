@@ -27,9 +27,11 @@ const testId = async (req, res) => {
             return;
         }
           const person = doc.data();
-          //se agrega imagen hardcodeada (editar cuando venga la foto)
-         person.imagen = "https://tn.com.ar/resizer/rqgHvVNI6wvaFIya22E90ZRhdWI=/1440x0/smart/filters:format(webp)/cloudfront-us-east-1.images.arcpublishing.com/artear/NZAR7H4CONCD5DUTFGO3WQCDWA.jpg"
+          //se agrega imagen
+         person.imagen = person.path
+         
           console.log(person);
+          
           res.send(person);
     } catch (error) {
           console.error(error);
@@ -57,7 +59,7 @@ const Filter = async (req, res) => {
 
 const newContact = async (req, res) => {
     console.log(req.body);
-     const {nombreModelo , edad , colorOjos, colorPelo, altura, calzado, pecho, cintura, cadera} = req.body
+     const {nombreModelo , edad , colorOjos, colorPelo, altura, calzado, pecho, cintura, cadera, path} = req.body
     try {
         await db.collection('test').add({
            nombreModelo,
@@ -68,7 +70,8 @@ const newContact = async (req, res) => {
            calzado,
            pecho,
            cintura,
-           cadera
+           cadera,
+           path,
          })
         res.send('Nuevo contacto Creado')
     } catch (error) {
