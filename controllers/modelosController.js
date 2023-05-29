@@ -1,9 +1,9 @@
 const { db } = require("../util/admin");
 
-const test = async (req, res) => {
-    const testRef = db.collection('test');
+const modelosGet = async (req, res) => {
+    const modeloRef = db.collection('modelo');
     try{
-            testRef.get().then((snapshot) => {
+            modeloRef.get().then((snapshot) => {
             const data = snapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data(),
@@ -12,15 +12,13 @@ const test = async (req, res) => {
             return res.status(201).json(data);
         })
     } catch (error) {
-        return res
-        .status(500)
-        .json({ general: "Algo salio mal, intentalo de nuevo"});          
+        return res.status(500).json({ general: "Algo salio mal, intentalo de nuevo"});          
     }
 };
 
-const testId = async (req, res) => {
+const modeloGet = async (req, res) => {
     try {
-          const doc = await db.collection('test').doc(req.params.id).get();
+          const doc = await db.collection('modelo').doc(req.params.id).get();
           if (!doc.exists) {
             console.log('No se encontró ningún documento con el ID proporcionado');
             res.status(404).send('No se encontró ningún documento con el ID proporcionado');
@@ -41,7 +39,7 @@ const testId = async (req, res) => {
 
 
 const Filter = async (req, res) => {
-    const filterRef = db.collection('test');
+    const filterRef = db.collection('modelo');
     try{
             filterRef.where('last', '!=', 'viruel').get().then((snapshot) => {
             const data = snapshot.docs.map((doc) => ({
@@ -57,11 +55,11 @@ const Filter = async (req, res) => {
     }
 };
 
-const newContact = async (req, res) => {
+const nuevaModelo = async (req, res) => {
     console.log(req.body);
-     const {nombreModelo , edad , colorOjos, colorPelo, altura, calzado, pecho, cintura, cadera, path} = req.body
+     const {nombreModelo , edad , colorOjos, colorPelo, altura, calzado, pecho, cintura, cadera, path, role} = req.body
     try {
-        await db.collection('test').add({
+        await db.collection('modelo').add({
            nombreModelo,
            edad,
            colorOjos,
@@ -72,6 +70,7 @@ const newContact = async (req, res) => {
            cintura,
            cadera,
            path,
+           role:"user",
          })
         res.send('Nuevo contacto Creado')
     } catch (error) {
@@ -80,9 +79,9 @@ const newContact = async (req, res) => {
     } 
 }
 
-const editContact = async (req, res) =>{
+const editarModelo = async (req, res) =>{
    
-    const doc = await db.collection('test').doc(req.params.id).get()
+    const doc = await db.collection('modelo').doc(req.params.id).get()
     console.log({
         id: doc.id,
         ...doc.data()
@@ -91,10 +90,10 @@ const editContact = async (req, res) =>{
 
 }
 
-const deleteContact = async (req , res ) =>{
+const borrarModelo = async (req , res ) =>{
     const {id} = req.params
     try {
-        await db.collection('test').doc(id).delete()
+        await db.collection('modelo').doc(id).delete()
         res.status(200).send({msg:"Se elimino el contacto"})
     } catch (error) {
         console.log(error);
@@ -103,11 +102,11 @@ const deleteContact = async (req , res ) =>{
 
 }
 
-const updateContact = async (req , res) =>{
+const updateModelo = async (req , res) =>{
 
     const {id} = req.params
     try {
-        await db.collection('test').doc(id).update(req.body)
+        await db.collection('modelo').doc(id).update(req.body)
         res.status(200).send({msg:"El contacto fue actualizado"})
     } catch (error) {
         res.status(400).send({msg:"El contacto no pudo ser actualizado"})
@@ -120,11 +119,11 @@ const updateContact = async (req , res) =>{
 
 
 module.exports ={
-    test,
-    newContact,
-    editContact,
-    deleteContact,
-    updateContact,
+    modelosGet,
+    nuevaModelo,
+    editarModelo,
+    borrarModelo,
+    updateModelo,
     Filter,
-    testId
+    modeloGet
 }
