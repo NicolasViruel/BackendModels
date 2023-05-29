@@ -4,12 +4,12 @@ require("dotenv").config()
 
 //routers
 const testRoutes = require("./router/test")
-const studentsRoutes = require("./router/students")
+const alumnosRoutes = require("./router/alumnos")
 
 
 //rutas
 app.use('/test', testRoutes);
-app.use('/api/students', studentsRoutes);
+app.use('/api/alumnos', alumnosRoutes);
 
 
 const PORT = process.env.PORT || 3004
